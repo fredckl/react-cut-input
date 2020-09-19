@@ -1,23 +1,73 @@
 {
-  "name": "input-splitter",
+  "name": "react-splitter-input",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist/*"
+  ],
+  "peerDependencies": {
+    "react": "^16.13.1"
+  },
   "dependencies": {
+    "@babel/preset-react": "^7.10.4",
+    "@changesets/cli": "^2.10.2",
+    "@jest/globals": "^26.4.2",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-image": "^2.0.5",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
+    "@testing-library/react-hooks": "^3.4.1",
     "@testing-library/user-event": "^7.1.2",
+    "prop-types": "^15.7.2",
+    "rambda": "^6.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "rollup": "^2.26.10",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-jsx": "^1.0.3",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-peer-deps-external": "^2.2.3",
+    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-visualizer": "^4.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:dist": "yarn clean:dist && rollup -c rollup.config.js",
+    "new-version": "changeset && changeset version",
+    "release": "yarn build && changeset publish"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "react/prop-types": [
+        2,
+        {
+          "ignore": [
+            "className",
+            "children"
+          ]
+        }
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "comma-style": [
+        2,
+        "last"
+      ],
+      "semi": [
+        2
+      ]
+    }
   },
   "browserslist": {
     "production": [

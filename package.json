@@ -43,7 +43,8 @@
     "eject": "react-scripts eject",
     "build:dist": "rollup -c rollup.config.js",
     "new-version": "changeset && changeset version",
-    "release": "yarn build && changeset publish"
+    "release": "yarn build && changeset publish",
+    "push": "git push --follow-tags"
   },
   "eslintConfig": {
     "extends": "react-app",

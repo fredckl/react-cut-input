@@ -1,5 +1,5 @@
 import React from 'react';
-import { CutInput } from './cut-input';
+import CutInput from './cut-input';
 
 function App() {
   return (

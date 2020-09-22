@@ -1,5 +1,5 @@
 {
-  "name": "react-splitter-input",
+  "name": "react-cut-input",
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.cjs.js",
@@ -8,7 +8,8 @@
     "dist/*"
   ],
   "peerDependencies": {
-    "react": "^16.13.1"
+    "react": "^16.13.1",
+    "rambda": "^6.1.0"
   },
   "dependencies": {
     "@babel/preset-react": "^7.10.4",
@@ -40,7 +41,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:dist": "yarn clean:dist && rollup -c rollup.config.js",
+    "build:dist": "rollup -c rollup.config.js",
     "new-version": "changeset && changeset version",
     "release": "yarn build && changeset publish"
   },

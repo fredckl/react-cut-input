@@ -4,7 +4,7 @@ import { formatDefaultValues, formatSizes, formatValues, getInputName } from './
 import { MAX_LENGTH, VALIDATOR, TRANSFORM } from './constants';
 
 
-const useSplitterInput = ({
+const useCutInput = ({
   sizes,
   transform,
   validator,
@@ -88,4 +88,4 @@ const useSplitterInput = ({
   };
 };
 
-export default useSplitterInput;
+export default useCutInput;

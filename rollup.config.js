@@ -6,7 +6,7 @@ import visualizer from 'rollup-plugin-visualizer';
 import pkg from './package.json';
 
 export default {
-  input: './src/split-input/index.js',
+  input: './src/cut-input/index.js',
   output: [
     {
       file: pkg.main,

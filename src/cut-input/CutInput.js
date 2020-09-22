@@ -3,9 +3,9 @@ import React from 'react';
 import GenericInput from './GenericInput';
 import { getInputName } from './func';
 import propTypes from 'prop-types';
-import useSplitterInput from './useSplitterInput';
+import useCutInput from './useCutInput';
 
-const SplitterInput = ({
+const CutInput = ({
   sizes,
   transform,
   Component,
@@ -20,7 +20,7 @@ const SplitterInput = ({
     state,
     ref,
     handleChange
-  } = useSplitterInput({
+  } = useCutInput({
     sizes,
     transform,
     validator,
@@ -43,7 +43,7 @@ const SplitterInput = ({
   );
 };
 
-SplitterInput.propTypes = {
+CutInput.propTypes = {
   sizes: propTypes.array.isRequired,
   transform: propTypes.oneOfType([propTypes.string, propTypes.func]),
   Component: propTypes.func,
@@ -55,4 +55,4 @@ SplitterInput.propTypes = {
   onChange: propTypes.func
 };
 
-export default SplitterInput;
+export default CutInput;

@@ -90,7 +90,6 @@ export const formatValues = (value, sizes, defaultPattern, exactPattern) => {
     map(item => formatRegexByItem(item, defaultPattern, exactPattern))
   )(sizes);
   const matches = length(value) ? value.match(new RegExp(regex, 'i')) : null;
-  console.log(regex);
   if (!length(matches)) return {};
   return compose(
     mergeAll,

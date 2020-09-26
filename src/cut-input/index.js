@@ -27,7 +27,7 @@ const CutInput = ({
     value,
     onChange,
     pattern,
-    exactPattern
+    exactPattern,
   });
 
   const Input = is(Function, Component) ? Component : GenericInput;

@@ -5,17 +5,16 @@ import { MAX_LENGTH, VALIDATOR, TRANSFORM } from './constants';
 
 
 const useCutInput = ({
+  value,
   sizes,
   transform,
   validator,
-  value,
   onChange,
   pattern,
   exactPattern
 }) => {
-  const newSizes = formatSizes(sizes);
-
   const ref = useRef();
+  const newSizes = formatSizes(sizes);
   const [state, setState] = useState({
     ...formatDefaultValues(newSizes),
     ...formatValues(value, newSizes, pattern, exactPattern)

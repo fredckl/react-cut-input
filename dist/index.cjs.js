@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var rambda = require('rambda');
 var React = require('react');
 
@@ -212,11 +210,10 @@ var formatValues = function formatValues(value, sizes, defaultPattern, exactPatt
     return formatRegexByItem(item, defaultPattern, exactPattern);
   }))(sizes);
   var matches = rambda.length(value) ? value.match(new RegExp(regex, 'i')) : null;
-  console.log(regex);
   if (!rambda.length(matches)) return {};
   return rambda.compose(rambda.mergeAll, function (d) {
     return d.map(function (match, i) {
-      return _defineProperty({}, getInputName(i), match);
+      return _defineProperty({}, getInputName(i), match || '');
     });
   }, rambda.slice(1, Infinity))(matches);
 };
@@ -1308,16 +1305,16 @@ if (process.env.NODE_ENV !== 'production') {
 }
 });
 
-var useSplitterInput = function useSplitterInput(_ref) {
-  var sizes = _ref.sizes,
+var useCutInput = function useCutInput(_ref) {
+  var value = _ref.value,
+      sizes = _ref.sizes,
       transform = _ref.transform,
       validator = _ref.validator,
-      value = _ref.value,
       onChange = _ref.onChange,
       pattern = _ref.pattern,
       exactPattern = _ref.exactPattern;
-  var newSizes = formatSizes(sizes);
   var ref = React.useRef();
+  var newSizes = formatSizes(sizes);
 
   var _useState = React.useState(_objectSpread2({}, formatDefaultValues(newSizes), {}, formatValues(value, newSizes, pattern, exactPattern))),
       _useState2 = _slicedToArray(_useState, 2),
@@ -1417,7 +1414,7 @@ var useSplitterInput = function useSplitterInput(_ref) {
   };
 };
 
-var SplitterInput = function SplitterInput(_ref) {
+var CutInput = function CutInput(_ref) {
   var sizes = _ref.sizes,
       transform = _ref.transform,
       Component = _ref.Component,
@@ -1428,7 +1425,7 @@ var SplitterInput = function SplitterInput(_ref) {
       exactPattern = _ref.exactPattern,
       className = _ref.className;
 
-  var _useSplitterInput = useSplitterInput({
+  var _useCutInput = useCutInput({
     sizes: sizes,
     transform: transform,
     validator: validator,
@@ -1437,9 +1434,9 @@ var SplitterInput = function SplitterInput(_ref) {
     pattern: pattern,
     exactPattern: exactPattern
   }),
-      state = _useSplitterInput.state,
-      ref = _useSplitterInput.ref,
-      handleChange = _useSplitterInput.handleChange;
+      state = _useCutInput.state,
+      ref = _useCutInput.ref,
+      handleChange = _useCutInput.handleChange;
 
   var Input = rambda.is(Function, Component) ? Component : GenericInput;
   return /*#__PURE__*/React__default['default'].createElement("div", {
@@ -1456,7 +1453,7 @@ var SplitterInput = function SplitterInput(_ref) {
   }));
 };
 
-SplitterInput.propTypes = {
+CutInput.propTypes = {
   sizes: propTypes.array.isRequired,
   transform: propTypes.oneOfType([propTypes.string, propTypes.func]),
   Component: propTypes.func,
@@ -1468,4 +1465,4 @@ SplitterInput.propTypes = {
   onChange: propTypes.func
 };
 
-exports.SplitterInput = SplitterInput;
+module.exports = CutInput;

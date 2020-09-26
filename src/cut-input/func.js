@@ -93,7 +93,7 @@ export const formatValues = (value, sizes, defaultPattern, exactPattern) => {
   if (!length(matches)) return {};
   return compose(
     mergeAll,
-    d => d.map((match, i) => ({ [getInputName(i)]: match })),
+    d => d.map((match, i) => ({ [getInputName(i)]: match || '' })),
     slice(1, Infinity)
   )(matches);
 };

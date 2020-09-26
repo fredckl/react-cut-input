@@ -8,8 +8,8 @@
     "dist/*"
   ],
   "peerDependencies": {
-    "react": "^16.13.1",
-    "rambda": "^6.1.0"
+    "rambda": "^6.1.0",
+    "react": "^16.13.1"
   },
   "dependencies": {
     "@babel/preset-react": "^7.10.4",
@@ -27,6 +27,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "react-test-renderer": "^16.13.1",
     "rollup": "^2.26.10",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-copy": "^3.3.0",
@@ -39,11 +40,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --watch",
     "eject": "react-scripts eject",
     "build:dist": "rollup -c rollup.config.js",
     "new-version": "changeset && changeset version",
-    "release": "yarn build && changeset publish",
+    "release": "yarn build:dist && changeset publish",
     "push": "git push --follow-tags"
   },
   "eslintConfig": {
@@ -66,9 +67,7 @@
         2,
         "last"
       ],
-      "semi": [
-        2
-      ]
+      "semi": [2]
     }
   },
   "browserslist": {
@@ -82,5 +81,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "is an helper for create mutli-inputs based on value",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fredckl/react-cut-input.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fredckl/react-cut-input/issues"
+  },
+  "homepage": "https://github.com/fredckl/react-cut-input#readme"
 }

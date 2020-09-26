@@ -6,7 +6,8 @@ function App() {
     <div className="App">
       <CutInput
         sizes={[2, 2]}
-        value="A.Q"
+        transform={'uppercase'}
+        // value="A.Q"
       />
     </div>
   );

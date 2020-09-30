@@ -9,9 +9,9 @@
   ],
   "peerDependencies": {
     "rambda": "^6.1.0",
-    "react": "^16.13.1"
+    "react": "^16.8.0"
   },
-  "dependencies": {
+  "devDependencies": {
     "@babel/preset-react": "^7.10.4",
     "@changesets/cli": "^2.10.2",
     "@jest/globals": "^26.4.2",
@@ -85,7 +85,7 @@
     ]
   },
   "description": "is an helper for create mutli-inputs based on value",
-  "devDependencies": {},
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fredckl/react-cut-input.git"
@@ -94,6 +94,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fredckl/react-cut-input/issues"
-  },
-  "homepage": "https://github.com/fredckl/react-cut-input#readme"
+  }
 }

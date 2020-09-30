@@ -106,7 +106,7 @@ function _unsupportedIterableToArray(o, minLen) {
   if (typeof o === "string") return _arrayLikeToArray(o, minLen);
   var n = Object.prototype.toString.call(o).slice(8, -1);
   if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(n);
+  if (n === "Map" || n === "Set") return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
 }
 
@@ -156,10 +156,10 @@ var getInputName = function getInputName(i) {
 
 var formatSizes = function formatSizes(sizes) {
   return reduce(function (acc, value) {
-    if (is(Number, value)) return [].concat(_toConsumableArray(acc), [_objectSpread2({}, defaultSizes, {
+    if (is(Number, value)) return [].concat(_toConsumableArray(acc), [_objectSpread2(_objectSpread2({}, defaultSizes), {}, {
       maxLength: value
     })]);
-    return [].concat(_toConsumableArray(acc), [_objectSpread2({}, defaultSizes, {}, value)]);
+    return [].concat(_toConsumableArray(acc), [_objectSpread2(_objectSpread2({}, defaultSizes), value)]);
   }, [], sizes);
 };
 /**
@@ -175,7 +175,7 @@ var formatSizes = function formatSizes(sizes) {
 var formatDefaultValues = function formatDefaultValues(sizes) {
   var count = 0;
   return reduce(function (acc) {
-    return _objectSpread2({}, acc, _defineProperty({}, getInputName(count++), ''));
+    return _objectSpread2(_objectSpread2({}, acc), {}, _defineProperty({}, getInputName(count++), ''));
   }, {}, sizes);
 };
 /**
@@ -214,11 +214,11 @@ var formatValues = function formatValues(value, sizes, defaultPattern, exactPatt
 
 function createCommonjsModule(fn, basedir, module) {
 	return module = {
-	  path: basedir,
-	  exports: {},
-	  require: function (path, base) {
-      return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
-    }
+		path: basedir,
+		exports: {},
+		require: function (path, base) {
+			return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+		}
 	}, fn(module, module.exports), module.exports;
 }
 
@@ -1310,7 +1310,7 @@ var useCutInput = function useCutInput(_ref) {
   var ref = useRef();
   var newSizes = formatSizes(sizes);
 
-  var _useState = useState(_objectSpread2({}, formatDefaultValues(newSizes), {}, formatValues(value, newSizes, pattern, exactPattern))),
+  var _useState = useState(_objectSpread2(_objectSpread2({}, formatDefaultValues(newSizes)), formatValues(value, newSizes, pattern, exactPattern))),
       _useState2 = _slicedToArray(_useState, 2),
       state = _useState2[0],
       setState = _useState2[1];

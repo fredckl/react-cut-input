@@ -4,4 +4,3 @@ src
 rollup.config.js
 stats.html
 .changeset
-.gitignore

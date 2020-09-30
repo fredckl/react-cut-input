@@ -1,6 +1,6 @@
 {
   "name": "react-cut-input",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -67,9 +67,7 @@
         2,
         "last"
       ],
-      "semi": [
-        2
-      ]
+      "semi": [2]
     }
   },
   "browserslist": {

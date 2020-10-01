@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <CutInput
-        sizes={[2, {pattern: '\\d'}]}
+        sizes={[2, {validator: '\\d', maxLength: 3}]}
         transform={'uppercase'}
         // value="A.Q"
       />

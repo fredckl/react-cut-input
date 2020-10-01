@@ -1,215 +1,8 @@
-import { reduce, is, compose, join, map, prop, length, mergeAll, slice, path, mergeLeft, pathOr, when, both, values, toLower, toUpper } from 'rambda';
 import React, { useRef, useState } from 'react';
+import { reduce, is, compose, join, map, prop, length, mergeAll, slice, path, mergeLeft, pathOr, when, both, values, toLower, toUpper } from 'rambda';
 
 var GenericInput = function GenericInput(props) {
   return /*#__PURE__*/React.createElement("input", props);
-};
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-}
-
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
-}
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-}
-
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
-}
-
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-
-  return arr2;
-}
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-var PATTERN = 'pattern';
-var MAX_LENGTH = 'maxLength';
-var TRANSFORM = 'transform';
-var VALIDATOR = 'validator';
-
-var _defaultSizes;
-var defaultSizes = (_defaultSizes = {}, _defineProperty(_defaultSizes, MAX_LENGTH, Infinity), _defineProperty(_defaultSizes, PATTERN, null), _defineProperty(_defaultSizes, TRANSFORM, null), _defineProperty(_defaultSizes, VALIDATOR, null), _defaultSizes);
-/**
- * Get input name by index
- * @param {number} i 
- */
-
-var getInputName = function getInputName(i) {
-  return "n".concat(i);
-};
-/**
- * Defined size structure
- * @param {*} sizes
- * [
- *  {
- *    maxLength: null,
- *    pattern: null,
- *    transform: null,
- *    validator: null
- *  }
- * ]
- */
-
-var formatSizes = function formatSizes(sizes) {
-  return reduce(function (acc, value) {
-    if (is(Number, value)) return [].concat(_toConsumableArray(acc), [_objectSpread2(_objectSpread2({}, defaultSizes), {}, {
-      maxLength: value
-    })]);
-    return [].concat(_toConsumableArray(acc), [_objectSpread2(_objectSpread2({}, defaultSizes), value)]);
-  }, [], sizes);
-};
-/**
- * Format state with default value
- * @param {array} sizes
- * {
- *  n0: '',
- *  n1: '',
- *  n2: ''
- * }
- */
-
-var formatDefaultValues = function formatDefaultValues(sizes) {
-  var count = 0;
-  return reduce(function (acc) {
-    return _objectSpread2(_objectSpread2({}, acc), {}, _defineProperty({}, getInputName(count++), ''));
-  }, {}, sizes);
-};
-/**
- * 
- * @param {object} item 
- * @param {string} defaultPattern 
- */
-
-var formatRegexByItem = function formatRegexByItem(item, defaultPattern, exactPattern) {
-  return prop(PATTERN, item) ? "(".concat(prop(PATTERN, item), ")") : "(".concat(defaultPattern || '.', "{").concat(prop(MAX_LENGTH, item), "})").concat(!exactPattern ? '?' : '');
-};
-/**
- * Format state with sizes values
- * @param {string} value
- * @param {array} sizes
- * @param {string} defaultPattern
- * {
- *  n0: 'ABCD',
- *  n1: '123',
- * }
- */
-
-
-var formatValues = function formatValues(value, sizes, defaultPattern, exactPattern) {
-  var regex = compose(join(''), map(function (item) {
-    return formatRegexByItem(item, defaultPattern, exactPattern);
-  }))(sizes);
-  var matches = length(value) ? value.match(new RegExp(regex, 'i')) : null;
-  if (!length(matches)) return {};
-  return compose(mergeAll, function (d) {
-    return d.map(function (match, i) {
-      return _defineProperty({}, getInputName(i), match || '');
-    });
-  }, slice(1, Infinity))(matches);
 };
 
 function createCommonjsModule(fn, basedir, module) {
@@ -1299,9 +1092,217 @@ if (process.env.NODE_ENV !== 'production') {
 }
 });
 
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+  return arr2;
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+var PATTERN = 'pattern';
+var MAX_LENGTH = 'maxLength';
+var TRANSFORM = 'transform';
+var VALIDATOR = 'validator';
+
+var _defaultSizes;
+var defaultSizes = (_defaultSizes = {}, _defineProperty(_defaultSizes, MAX_LENGTH, Infinity), _defineProperty(_defaultSizes, PATTERN, null), _defineProperty(_defaultSizes, TRANSFORM, null), _defineProperty(_defaultSizes, VALIDATOR, null), _defaultSizes);
+/**
+ * Get input name by index
+ * @param {number} i 
+ */
+
+var getInputName = function getInputName(i) {
+  return "n".concat(i);
+};
+/**
+ * Defined size structure
+ * @param {*} sizes
+ * [
+ *  {
+ *    maxLength: null,
+ *    pattern: null,
+ *    transform: null,
+ *    validator: null
+ *  }
+ * ]
+ */
+
+var formatSizes = function formatSizes(sizes) {
+  return reduce(function (acc, value) {
+    if (is(Number, value)) return [].concat(_toConsumableArray(acc), [_objectSpread2(_objectSpread2({}, defaultSizes), {}, {
+      maxLength: value
+    })]);
+    return [].concat(_toConsumableArray(acc), [_objectSpread2(_objectSpread2({}, defaultSizes), value)]);
+  }, [], sizes);
+};
+/**
+ * Format state with default value
+ * @param {array} sizes
+ * {
+ *  n0: '',
+ *  n1: '',
+ *  n2: ''
+ * }
+ */
+
+var formatDefaultValues = function formatDefaultValues(sizes) {
+  var count = 0;
+  return reduce(function (acc) {
+    return _objectSpread2(_objectSpread2({}, acc), {}, _defineProperty({}, getInputName(count++), ''));
+  }, {}, sizes);
+};
+/**
+ * 
+ * @param {object} item 
+ * @param {string} defaultPattern 
+ */
+
+var formatRegexByItem = function formatRegexByItem(item, defaultPattern, exactPattern) {
+  return prop(PATTERN, item) ? "(".concat(prop(PATTERN, item), ")") : "(".concat(defaultPattern || '.', "{").concat(prop(MAX_LENGTH, item), "})").concat(!exactPattern ? '?' : '');
+};
+/**
+ * Format state with sizes values
+ * @param {string} value
+ * @param {array} sizes
+ * @param {string} defaultPattern
+ * {
+ *  n0: 'ABCD',
+ *  n1: '123',
+ * }
+ */
+
+
+var formatValues = function formatValues(value, sizes, defaultPattern, exactPattern) {
+  var regex = compose(join(''), map(function (item) {
+    return formatRegexByItem(item, defaultPattern, exactPattern);
+  }))(sizes);
+  var matches = length(value) ? value.match(new RegExp(regex, 'i')) : null;
+  if (!length(matches)) return {};
+  return compose(mergeAll, function (d) {
+    return d.map(function (match, i) {
+      return _defineProperty({}, getInputName(i), match || '');
+    });
+  }, slice(1, Infinity))(matches);
+};
+
 var useCutInput = function useCutInput(_ref) {
   var value = _ref.value,
-      sizes = _ref.sizes,
+      _ref$sizes = _ref.sizes,
+      sizes = _ref$sizes === void 0 ? [{}] : _ref$sizes,
       transform = _ref.transform,
       validator = _ref.validator,
       onChange = _ref.onChange,
@@ -1448,7 +1449,7 @@ var CutInput = function CutInput(_ref) {
 };
 
 CutInput.propTypes = {
-  sizes: propTypes.array.isRequired,
+  sizes: propTypes.array,
   transform: propTypes.oneOfType([propTypes.string, propTypes.func]),
   Component: propTypes.func,
   className: propTypes.string,
@@ -1459,4 +1460,4 @@ CutInput.propTypes = {
   onChange: propTypes.func
 };
 
-export default CutInput;
+export { CutInput };

@@ -1,7 +1,14 @@
-import useCutInput from '../../src/cut-input/useCutInput';
+import useCutInput from '../../src/cut-input/hooks/useCutInput';
 import { renderHook, act } from '@testing-library/react-hooks';
 
 describe('Test useCutInput', () => {
+  it('should init one state with empty sizes', () => {
+    const { result } = renderHook(() => useCutInput({}));
+    expect(result.current.state).toEqual({
+      n0: ''
+    });
+  });
+
   it('should contain 3 states', () => {
     const sizes = [2, 2, 2];
     const { result } = renderHook(() => useCutInput({ sizes }));

@@ -9,4 +9,4 @@ npm install react-cut-input
 // or yarn add react-cut-input
 ```
 
-Documentation coming soon
+Documentation coming soon.

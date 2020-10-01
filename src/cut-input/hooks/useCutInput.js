@@ -1,12 +1,11 @@
 import { both, is, join, length, mergeLeft, path, pathOr, prop, toLower, toUpper, values, when } from 'rambda';
 import { useRef, useState } from 'react';
-import { formatDefaultValues, formatSizes, formatValues, getInputName } from './func';
-import { MAX_LENGTH, VALIDATOR, TRANSFORM } from './constants';
-
+import { formatDefaultValues, formatSizes, formatValues, getInputName } from '../func';
+import { MAX_LENGTH, VALIDATOR, TRANSFORM } from '../constants';
 
 const useCutInput = ({
   value,
-  sizes,
+  sizes = [{}],
   transform,
   validator,
   onChange,

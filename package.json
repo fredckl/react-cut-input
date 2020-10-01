@@ -23,6 +23,8 @@
     "@testing-library/react-hooks": "^3.4.1",
     "@testing-library/user-event": "^7.1.2",
     "prop-types": "^15.7.2",
+    "rambda": "^6.1.0",
+    "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-test-renderer": "^16.13.1",
@@ -65,7 +67,9 @@
         2,
         "last"
       ],
-      "semi": [2]
+      "semi": [
+        2
+      ]
     }
   },
   "browserslist": {
@@ -81,10 +85,7 @@
     ]
   },
   "description": "is an helper for create mutli-inputs based on value",
-  "dependencies": {
-    "rambda": "^6.1.0",
-    "react": "^16.13.1"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fredckl/react-cut-input.git"
